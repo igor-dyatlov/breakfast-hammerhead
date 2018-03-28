@@ -517,7 +517,7 @@ static int _adreno_dispatcher_issuecmds(struct adreno_device *adreno_dev)
  *
  * Lock the dispatcher and call _adreno_dispatcher_issueibcmds
  */
-static int adreno_dispatcher_issuecmds(struct adreno_device *adreno_dev)
+int adreno_dispatcher_issuecmds(struct adreno_device *adreno_dev)
 {
 	struct adreno_dispatcher *dispatcher = &adreno_dev->dispatcher;
 	int ret;
@@ -1508,7 +1508,7 @@ void adreno_dispatcher_queue_context(struct kgsl_device *device,
  * subsequent calls then the GPU may have faulted
  */
 
-static void adreno_dispatcher_fault_timer(unsigned long data)
+void adreno_dispatcher_fault_timer(unsigned long data)
 {
 	struct adreno_device *adreno_dev = (struct adreno_device *) data;
 	struct kgsl_device *device = &adreno_dev->dev;
@@ -1543,7 +1543,7 @@ static void adreno_dispatcher_fault_timer(unsigned long data)
  * This is called when the timer expires - it either means the GPU is hung or
  * the IB is taking too long to execute
  */
-static void adreno_dispatcher_timer(unsigned long data)
+void adreno_dispatcher_timer(unsigned long data)
 {
 	struct adreno_device *adreno_dev = (struct adreno_device *) data;
 	struct kgsl_device *device = &adreno_dev->dev;
